@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oferta Especial — Kit Negócio do Serralheiro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0a0a0a;
+      --dark: #111214;
+      --steel: #1c1f23;
+      --metal: #2a2d33;
+      --rust: #c94a1a;
+      --amber: #e8730a;
+      --gold: #f5a623;
+      --smoke: #6b7280;
+      --silver: #9ca3af;
+      --light: #e8e4de;
+      --white: #f5f2ee;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* NOISE */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.5;
+    }
+
+    /* URGENCY BAR */
+    .urgency-bar {
+      background: linear-gradient(90deg, var(--rust), var(--amber), var(--rust));
+      background-size: 200% 100%;
+      animation: slideGrad 3s linear infinite;
+      padding: 12px 20px;
+      text-align: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #000;
+    }
+    @keyframes slideGrad {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    /* WAIT BANNER */
+    .wait-banner {
+      background: var(--steel);
+      border-bottom: 1px solid rgba(201,74,26,0.3);
+      padding: 40px 20px 36px;
+      text-align: center;
+    }
+    .wait-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(201,74,26,0.15);
+      border: 1px solid rgba(201,74,26,0.4);
+      color: var(--amber);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      margin-bottom: 16px;
+    }
+    .wait-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--rust);
+      box-shadow: 0 0 8px var(--rust);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.5; transform:scale(1.4); }
+    }
+    .wait-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(28px, 6vw, 48px);
+      line-height: 1;
+      letter-spacing: 2px;
+      color: var(--white);
+    }
+    .wait-title span { color: var(--amber); }
+    .wait-sub {
+      font-size: 15px;
+      color: var(--silver);
+      margin-top: 10px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    /* MAIN CONTENT */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* OTO SECTION */
+    .oto-section {
+      padding: 60px 20px 20px;
+      text-align: center;
+    }
+    .oto-label {
+      display: inline-block;
+      background: var(--rust);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      margin-bottom: 20px;
+    }
+    .oto-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 8vw, 72px);
+      line-height: 0.95;
+      letter-spacing: 2px;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .oto-headline span { color: var(--amber); }
+    .oto-sub {
+      font-size: 17px;
+      color: var(--silver);
+      max-width: 640px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .oto-sub strong { color: var(--white); }
+
+    /* PAIN AGITATION */
+    .pain-box {
+      background: var(--steel);
+      border-left: 4px solid var(--rust);
+      padding: 28px 32px;
+      margin: 0 auto 48px;
+      max-width: 680px;
+      text-align: left;
+    }
+    .pain-box p {
+      font-size: 16px;
+      color: var(--silver);
+      line-height: 1.8;
+    }
+    .pain-box strong { color: var(--white); }
+    .pain-box .pain-highlight {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--amber);
+      display: block;
+      margin-top: 14px;
+    }
+
+    /* KIT CARDS */
+    .kit-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .kit-title span { color: var(--amber); }
+
+    .kit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      max-width: 720px;
+      margin: 0 auto 48px;
+    }
+    .kit-card {
+      background: var(--steel);
+      border: 1px solid rgba(232,115,10,0.2);
+      padding: 24px 20px;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .kit-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--rust), var(--amber));
+    }
+    .kit-card:hover {
+      border-color: rgba(232,115,10,0.5);
+      transform: translateY(-2px);
+    }
+    .kit-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: var(--rust);
+      margin-bottom: 8px;
+    }
+    .kit-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .kit-desc {
+      font-size: 13px;
+      color: var(--smoke);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .kit-value {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      color: var(--smoke);
+    }
+    .kit-value s { color: var(--smoke); }
+    .kit-value .free {
+      color: var(--amber);
+      font-weight: 700;
+      font-size: 15px;
+      margin-left: 6px;
+    }
+
+    /* VALUE STACK */
+    .value-stack {
+      background: var(--steel);
+      border: 1px solid rgba(232,115,10,0.25);
+      max-width: 480px;
+      margin: 0 auto 40px;
+      padding: 32px 36px;
+      text-align: center;
+    }
+    .vs-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--smoke);
+      margin-bottom: 20px;
+    }
+    .vs-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 14px;
+    }
+    .vs-item:last-of-type { border-bottom: none; }
+    .vs-item-name { color: var(--silver); text-align: left; }
+    .vs-item-price { color: var(--smoke); text-decoration: line-through; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; }
+    .vs-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(232,115,10,0.3);
+      margin-top: 16px;
+      padding-top: 16px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+    .vs-total .total-label { color: var(--white); }
+    .vs-total .total-price { color: var(--smoke); text-decoration: line-through; }
+    .vs-today {
+      margin-top: 14px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--smoke);
+    }
+    .vs-today-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 72px;
+      line-height: 0.9;
+      color: var(--amber);
+      letter-spacing: 2px;
+      margin-top: 6px;
+    }
+    .vs-today-price .curr {
+      font-size: 32px;
+      vertical-align: super;
+      line-height: 1;
+    }
+    .vs-note {
+      font-size: 12px;
+      color: var(--smoke);
+      margin-top: 6px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* CTA BUTTONS */
+    .cta-section {
+      text-align: center;
+      padding: 0 20px 80px;
+    }
+    .btn-yes {
+      display: block;
+      max-width: 500px;
+      margin: 0 auto 16px;
+      background: linear-gradient(135deg, var(--rust), var(--amber));
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 22px 40px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-yes::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(255,255,255,0.1), transparent);
+    }
+    .btn-yes:hover { opacity: 0.92; transform: translateY(-2px); }
+    .btn-yes-sub {
+      font-size: 12px;
+      color: var(--smoke);
+      letter-spacing: 1px;
+      margin-bottom: 28px;
+    }
+    .btn-no {
+      display: inline-block;
+      color: var(--smoke);
+      font-size: 13px;
+      text-decoration: underline;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'Barlow', sans-serif;
+      transition: color 0.2s;
+    }
+    .btn-no:hover { color: var(--silver); }
+
+    /* GUARANTEE */
+    .guarantee-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 20px;
+      border-top: 1px solid rgba(232,115,10,0.1);
+      font-size: 13px;
+      color: var(--smoke);
+      max-width: 500px;
+      margin: 0 auto 40px;
+    }
+    .guarantee-strip .shield {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    /* TIMER */
+    .timer-wrap {
+      text-align: center;
+      margin: 0 auto 32px;
+      max-width: 400px;
+    }
+    .timer-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--smoke);
+      margin-bottom: 10px;
+    }
+    .timer {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+    .timer-unit {
+      text-align: center;
+    }
+    .timer-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      line-height: 1;
+      color: var(--amber);
+      background: var(--steel);
+      border: 1px solid rgba(232,115,10,0.3);
+      padding: 8px 16px;
+      min-width: 64px;
+      display: block;
+    }
+    .timer-text {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--smoke);
+      margin-top: 4px;
+    }
+    .timer-sep {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      color: var(--rust);
+      line-height: 1.3;
+      padding-top: 8px;
+    }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(232,115,10,0.15);
+      margin: 48px auto;
+      max-width: 680px;
+    }
+
+    /* FADE IN */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.6s ease both; }
+    .fade-up-2 { animation: fadeUp 0.6s 0.15s ease both; }
+    .fade-up-3 { animation: fadeUp 0.6s 0.3s ease both; }
+    .fade-up-4 { animation: fadeUp 0.6s 0.45s ease both; }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .pain-box { padding: 20px; }
+      .value-stack { padding: 24px 20px; }
+      .kit-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- URGENCY BAR -->
+  <div class="urgency-bar">
+    ⚡ Esta oferta expira quando você sair desta página — não será exibida novamente
+  </div>
+
+  <!-- WAIT BANNER -->
+  <div class="wait-banner fade-up">
+    <div class="container">
+      <div class="wait-tag">Oferta única — só aparece agora</div>
+      <div class="wait-title">ESPERA! Seu pedido<br><span>está sendo processado...</span></div>
+      <p class="wait-sub">Antes de liberar seu acesso, temos uma oferta exclusiva para novos clientes. Você não verá isso novamente.</p>
+    </div>
+  </div>
+
+  <!-- OTO SECTION -->
+  <section class="oto-section fade-up-2">
+    <div class="container">
+      <div class="oto-label">Oferta Única — Uma Vez Só</div>
+      <h1 class="oto-headline">Você sabe fazer<br><span>o projeto.</span><br>Mas sabe cobrar?</h1>
+      <p class="oto-sub">
+        A maioria dos serralheiros <strong>perde dinheiro sem perceber</strong> — cobra barato, não sabe prospectar
+        e improvisa na gestão. O <strong>Kit Negócio do Serralheiro</strong> resolve isso em um único pacote.
+      </p>
+
+      <!-- PAIN BOX -->
+      <div class="pain-box">
+        <p>
+          Você investe horas em cada projeto, entrega com qualidade — mas no fim do mês
+          <strong>a conta não fecha</strong>. Clientes somem, a agenda fica vazia e você
+          não sabe exatamente quanto cobrar por cada serviço.
+          <br><br>
+          O problema não é o seu trabalho. É que <strong>ninguém te ensinou a parte de negócio.</strong>
+        </p>
+        <span class="pain-highlight">→ É exatamente isso que este kit resolve.</span>
+      </div>
+
+      <!-- KIT CARDS -->
+      <div class="kit-title">O que está no <span>Kit Negócio</span></div>
+      <div class="kit-grid">
+        <div class="kit-card">
+          <div class="kit-num">ITEM 01</div>
+          <div class="kit-name">Serralheiro de Sucesso</div>
+          <div class="kit-desc">Como profissionalizar seu serviço e se posicionar para atrair mais clientes. Atualizado 2025.</div>
+          <div class="kit-value">Valor: <s>R$97</s><span class="free">INCLUÍDO</span></div>
+        </div>
+        <div class="kit-card">
+          <div class="kit-num">ITEM 02</div>
+          <div class="kit-name">Consiga Clientes Todos os Dias</div>
+          <div class="kit-desc">Estratégias comprovadas para lotar sua agenda de serviços e nunca ficar sem trabalho.</div>
+          <div class="kit-value">Valor: <s>R$87</s><span class="free">INCLUÍDO</span></div>
+        </div>
+        <div class="kit-card">
+          <div class="kit-num">ITEM 03</div>
+          <div class="kit-name">Guia Completo de Precificação</div>
+          <div class="kit-desc">Saiba exatamente quanto cobrar em cada serviço — nunca mais cobrar barato ou perder margem.</div>
+          <div class="kit-value">Valor: <s>R$77</s><span class="free">INCLUÍDO</span></div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- VALUE STACK + PRICE -->
+      <div class="value-stack fade-up-3">
+        <div class="vs-title">Resumo da Oferta</div>
+        <div class="vs-item">
+          <span class="vs-item-name">Serralheiro de Sucesso</span>
+          <span class="vs-item-price">R$97</span>
+        </div>
+        <div class="vs-item">
+          <span class="vs-item-name">Consiga Clientes Todos os Dias</span>
+          <span class="vs-item-price">R$87</span>
+        </div>
+        <div class="vs-item">
+          <span class="vs-item-name">Guia Completo de Precificação</span>
+          <span class="vs-item-price">R$77</span>
+        </div>
+        <div class="vs-total">
+          <span class="total-label">VALOR TOTAL</span>
+          <span class="total-price">R$261</span>
+        </div>
+        <div class="vs-today">Hoje você leva tudo por</div>
+        <div class="vs-today-price"><span class="curr">R$</span>37</div>
+        <div class="vs-note">pagamento único · acesso imediato</div>
+      </div>
+
+      <!-- TIMER -->
+      <div class="timer-wrap fade-up-3">
+        <div class="timer-label">⏱ Esta oferta expira em</div>
+        <div class="timer">
+          <div class="timer-unit">
+            <span class="timer-num" id="t-min">14</span>
+            <span class="timer-text">min</span>
+          </div>
+          <div class="timer-sep">:</div>
+          <div class="timer-unit">
+            <span class="timer-num" id="t-sec">59</span>
+            <span class="timer-text">seg</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section fade-up-4">
+    <div class="container">
+      <a href="https://www.ggcheckout.com/checkout/v2/qMD3weijsp1HxF9Q7MvL" class="btn-yes">
+        ✅ SIM! QUERO O KIT NEGÓCIO POR R$37 →
+      </a>
+      <p class="btn-yes-sub">Acesso imediato · Garantia 30 dias · Cartão, Boleto ou Pix</p>
+
+      <div class="guarantee-strip">
+        <span class="shield">🛡️</span>
+        <span>Garantia incondicional de 30 dias. Se não gostar por qualquer motivo, devolvemos 100% do seu dinheiro — sem perguntas.</span>
+      </div>
+
+      <a href="obrigado_5.html" class="btn-no">
+        Não, obrigado. Não preciso aumentar minha renda agora.
+      </a>
+    </div>
+  </section>
+
+  <script>
+    // Countdown timer — 15 minutes
+    const stored = sessionStorage.getItem('upsell_timer_end');
+    const end = stored ? parseInt(stored) : Date.now() + 15 * 60 * 1000;
+    if (!stored) sessionStorage.setItem('upsell_timer_end', end);
+
+    function updateTimer() {
+      const remaining = Math.max(0, end - Date.now());
+      const mins = Math.floor(remaining / 60000);
+      const secs = Math.floor((remaining % 60000) / 1000);
+      document.getElementById('t-min').textContent = String(mins).padStart(2, '0');
+      document.getElementById('t-sec').textContent = String(secs).padStart(2, '0');
+      if (remaining <= 0) {
+        clearInterval(interval);
+        document.getElementById('t-min').textContent = '00';
+        document.getElementById('t-sec').textContent = '00';
+      }
+    }
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+  </script>
+
+</body>
+</html>
