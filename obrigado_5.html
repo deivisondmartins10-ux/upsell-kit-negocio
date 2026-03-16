@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compra Confirmada – 500 Projetos de Móveis Industriais</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --orange: #E8651A;
+      --orange-glow: rgba(232, 101, 26, 0.35);
+      --dark: #0a0a0a;
+      --dark2: #111111;
+      --dark3: #1a1a1a;
+      --text: #e0d8cf;
+      --muted: #6b6560;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--dark);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Orange glow from top */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse, var(--orange-glow) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+      50% { opacity: 1; transform: translateX(-50%) scale(1.08); }
+    }
+
+    /* Grid lines background */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(232,101,26,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,101,26,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      width: 90%;
+      text-align: center;
+      padding: 60px 40px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Check icon */
+    .check-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 90px;
+      height: 90px;
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+      margin-bottom: 36px;
+      position: relative;
+      animation: fadeUp 0.6s ease both;
+      box-shadow: 0 0 30px var(--orange-glow), inset 0 0 20px rgba(232,101,26,0.08);
+    }
+
+    .check-wrap svg {
+      width: 42px;
+      height: 42px;
+      stroke: var(--orange);
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 60;
+      stroke-dashoffset: 60;
+      animation: draw 0.7s ease 0.5s forwards;
+    }
+
+    @keyframes draw {
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* Label above title */
+    .label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 16px;
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 10vw, 88px);
+      line-height: 0.95;
+      letter-spacing: 2px;
+      color: #fff;
+      margin-bottom: 8px;
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
+
+    h1 span {
+      color: var(--orange);
+    }
+
+    .subtitle {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--text);
+      opacity: 0.75;
+      margin-bottom: 48px;
+      line-height: 1.5;
+      animation: fadeUp 0.6s ease 0.3s both;
+    }
+
+    /* Divider */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--orange);
+      margin: 0 auto 40px;
+      animation: fadeUp 0.6s ease 0.35s both;
+    }
+
+    /* Info card */
+    .card {
+      background: var(--dark3);
+      border: 1px solid rgba(232,101,26,0.2);
+      border-radius: 4px;
+      padding: 32px 36px;
+      margin-bottom: 36px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp 0.6s ease 0.4s both;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--orange);
+    }
+
+    .card-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 2px;
+      color: var(--orange);
+      margin-bottom: 16px;
+    }
+
+    .steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .step-num {
+      min-width: 26px;
+      height: 26px;
+      background: var(--orange);
+      color: #fff;
+      font-weight: 700;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 2px;
+      margin-top: 1px;
+    }
+
+    /* CTA Button */
+    .cta-btn {
+      display: inline-block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 3px;
+      color: #fff;
+      background: var(--orange);
+      padding: 16px 48px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: background 0.2s, transform 0.2s;
+      animation: fadeUp 0.6s ease 0.5s both;
+      box-shadow: 0 8px 30px var(--orange-glow);
+    }
+
+    .cta-btn:hover {
+      background: #ff7a2e;
+      transform: translateY(-2px);
+    }
+
+    .email-box {
+      background: var(--dark3);
+      border: 1px solid rgba(232,101,26,0.2);
+      border-radius: 4px;
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      animation: fadeUp 0.6s ease 0.5s both;
+      box-shadow: 0 0 30px rgba(232,101,26,0.06);
+    }
+
+    .email-icon {
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--orange);
+      border-radius: 50%;
+      color: var(--orange);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    .email-icon svg { width: 24px; height: 24px; }
+
+    .email-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: var(--orange);
+    }
+
+    .email-desc {
+      font-size: 14px;
+      color: var(--text);
+      opacity: 0.75;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .email-desc strong { color: var(--text); opacity: 1; font-weight: 700; }
+    .note {
+      margin-top: 32px;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      animation: fadeUp 0.6s ease 0.6s both;
+    }
+
+    /* Corner decoration */
+    .corner {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: rgba(232,101,26,0.25);
+      text-transform: uppercase;
+      z-index: 1;
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 40px 20px; }
+      .card { padding: 24px 20px; }
+    }
+  </style>
+
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1366880421909400');
+  fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1366880421909400&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- Fim Meta Pixel -->
+</head>
+<body>
+
+  <div class="grid-bg"></div>
+
+  <div class="container">
+
+    <div class="check-wrap">
+      <svg viewBox="0 0 24 24">
+        <polyline points="4 12 10 18 20 7"/>
+      </svg>
+    </div>
+
+    <p class="label">✦ Pedido Confirmado</p>
+
+    <h1>COMPRA<br/><span>APROVADA!</span></h1>
+
+    <div class="divider"></div>
+
+    <p class="subtitle">
+      Seu acesso está sendo liberado.<br/>
+      Verifique seu e-mail nos próximos minutos.
+    </p>
+
+    <div class="card">
+      <p class="card-title">▸ Próximos Passos</p>
+      <ul class="steps">
+        <li>
+          <span class="step-num">1</span>
+          <span>Acesse sua caixa de entrada e confirme seu endereço de e-mail caso necessário.</span>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <span>Você receberá um e-mail com o link de acesso aos <strong>500 Projetos de Móveis Industriais</strong>.</span>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <span>Não encontrou o e-mail? Verifique a pasta de <strong>Spam</strong> ou <strong>Promoções</strong>.</span>
+        </li>
+        <li>
+          <span class="step-num">4</span>
+          <span>Faça o login na plataforma e comece a explorar seu material imediatamente.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="email-box">
+      <div class="email-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <polyline points="2,4 12,13 22,4"/>
+        </svg>
+      </div>
+      <p class="email-title">VERIFIQUE SEU E-MAIL</p>
+      <p class="email-desc">O link de acesso ao seu material foi enviado para o e-mail cadastrado na compra. Não esqueça de checar a pasta de <strong>Spam</strong> ou <strong>Promoções</strong>.</p>
+    </div>
+
+    <p class="note">⚡ Acesso liberado imediatamente após confirmação do pagamento</p>
+
+  </div>
+
+  <p class="corner">500 Projetos Industriais</p>
+
+</body>
+</html>
